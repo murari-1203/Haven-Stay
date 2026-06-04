@@ -1,0 +1,51 @@
+<% layout("layouts/boilerplate") %>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<div class="show-page">
+  <div class="show-card">
+
+    <!-- Image -->
+    <div class="show-img-wrapper">
+      <img src="<%= doc.image.url %>" alt="<%= doc.title %>" class="show-img">
+      <div class="show-price-badge">
+        ₹<%= doc.price.toLocaleString("en-IN") %> <span>/ night</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="show-body">
+
+      <div class="show-top">
+        <div>
+          <h3 class="show-title"><%= doc.title %></h3>
+          <p class="show-location">
+            <i class="fa-solid fa-location-dot show-pin"></i>
+            <%= doc.location %>, <%= doc.country %>
+          </p>
+        </div>
+      </div>
+
+      <div class="section-divider">About this place</div>
+
+      <p class="show-description"><%= doc.description %></p>
+
+      <div class="section-divider">Actions</div>
+
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <a href="/listings/<%= doc._id %>/edit" class="btn-submit d-flex align-items-center gap-2">
+          <i class="fa-regular fa-pen-to-square"></i> Edit listing
+        </a>
+
+        <form method="POST" action="/listings/<%= doc._id %>?_method=DELETE">
+          <button type="submit" class="btn-delete d-flex align-items-center gap-2">
+            <i class="fa-regular fa-trash-can"></i> Delete listing
+          </button>
+        </form>
+
+        <a href="/listings" class="btn-cancel">← Back to listings</a>
+      </div>
+
+    </div>
+  </div>
+</div>
