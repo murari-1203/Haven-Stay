@@ -1,6 +1,6 @@
 # 🏡 Haven Stay
 
-WanderStay is a full-stack property listing web application. Users can browse, create, edit, and delete accommodation listings. The project is built using Node.js, Express.js, MongoDB, Mongoose, and EJS.
+Haven Stay is a full-stack property listing web application. Users can browse, create, edit, and delete accommodation listings. The project is built using Node.js, Express.js, MongoDB, Mongoose, and EJS.
 
 ---
 
