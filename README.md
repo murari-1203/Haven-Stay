@@ -16,13 +16,11 @@ WanderStay is a full-stack property listing web application. Users can browse, c
 ### ✅ Validation
 - Server-side validation using Joi
 - Client-side validation using Bootstrap
-- Prevents invalid data submission
 
 ### ⚠️ Error Handling
 - Custom error handling system
 - Centralized error middleware
 - Async error handling for routes
-- 404 page handling
 
 ### 🎨 User Interface
 - EJS templating engine
@@ -33,7 +31,6 @@ WanderStay is a full-stack property listing web application. Users can browse, c
 ### 🗄️ Database
 - MongoDB integration
 - Mongoose models and schemas
-- Persistent storage for listings
 
 ---
 
