@@ -6,31 +6,47 @@ Haven Stay is a full-stack property listing web application. Users can browse, c
 
 ## 🚀 Features
 
+## Features
+
 ### 📋 Listing Management
-- View all listings
-- View individual listing details
-- Create new listings
-- Edit existing listings
-- Delete listings
+
+* View all listings
+* View individual listing details
+* Create new listings
+* Edit existing listings
+* Delete listings
+
+### ⭐ Reviews & Ratings
+
+* Add reviews to listings
+* Rate listings
+* View reviews on listing pages
+* Delete reviews
 
 ### ✅ Validation
-- Server-side validation using Joi
-- Client-side validation using Bootstrap
+
+* Server-side validation using Joi
+* Client-side validation using Bootstrap
 
 ### ⚠️ Error Handling
-- Custom error handling system
-- Centralized error middleware
-- Async error handling for routes
+
+* Custom error handling system
+* Centralized error middleware
+* Async error handling for routes
 
 ### 🎨 User Interface
-- EJS templating engine
-- EJS-Mate layouts
-- Responsive Bootstrap design
-- Custom CSS styling
+
+* EJS templating engine
+* EJS-Mate layouts
+* Responsive Bootstrap design
+* Custom CSS styling
 
 ### 🗄️ Database
-- MongoDB integration
-- Mongoose models and schemas
+
+* MongoDB integration
+* Mongoose models and schemas
+* One-to-many relationship between Listings and Reviews
+
 
 ---
 
@@ -53,17 +69,16 @@ Haven Stay is a full-stack property listing web application. Users can browse, c
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
-```text
 WanderStay/
-│
 ├── init/
 │   ├── data.js
 │   └── index.js
 │
 ├── models/
-│   └── listing.js
+│   ├── listing.js
+│   └── review.js
 │
 ├── public/
 │   ├── css/
@@ -82,21 +97,23 @@ WanderStay/
 ├── schemas.js
 ├── package.json
 └── README.md
-```
 
 ---
 
 ## 📌 Routes
 
-| Method | Route | Description |
-|----------|----------|----------|
-| GET | /listings | Show all listings |
-| GET | /listings/new | Form to create a listing |
-| POST | /listings | Create a new listing |
-| GET | /listings/:id | Show listing details |
-| GET | /listings/:id/edit | Edit listing form |
-| PUT | /listings/:id | Update a listing |
-| DELETE | /listings/:id | Delete a listing |
+| Method | Route                           | Description                    |
+| ------ | ------------------------------- | ------------------------------ |
+| GET    | /listings                       | Show all listings              |
+| GET    | /listings/new                   | Form to create a listing       |
+| POST   | /listings                       | Create a new listing           |
+| GET    | /listings/:id                   | Show listing details           |
+| GET    | /listings/:id/edit              | Edit listing form              |
+| PUT    | /listings/:id                   | Update a listing               |
+| DELETE | /listings/:id                   | Delete a listing               |
+| POST   | /listings/:id/reviews           | Add a review to a listing      |
+| DELETE | /listings/:id/reviews/:reviewId | Delete a review from a listing |
+
 
 ---
 
