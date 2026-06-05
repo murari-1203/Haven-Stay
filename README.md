@@ -174,7 +174,6 @@ http://localhost:3000/listings
 ## 🔮 Future Improvements
 
 - User Authentication & Authorization
-- Reviews and Ratings
 - Image Upload with Cloudinary
 - Search and Filtering
 - Map Integration
