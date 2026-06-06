@@ -11,6 +11,7 @@ Haven Stay is a full-stack property listing web application. Users can browse, c
 ### 📋 Listing Management
 
 * View all listings
+* Flash Messages
 * View individual listing details
 * Create new listings
 * Edit existing listings
@@ -69,9 +70,12 @@ Haven Stay is a full-stack property listing web application. Users can browse, c
 
 ---
 
+
 ## Project Structure
 
-WanderStay/
+```text
+Haven-Stay/
+│
 ├── init/
 │   ├── data.js
 │   └── index.js
@@ -82,7 +86,16 @@ WanderStay/
 │
 ├── public/
 │   ├── css/
+│   │   ├── indexStyle.css
+│   │   ├── newStyle.css
+│   │   ├── showStyle.css
+│   │   └── style.css
+│   │
 │   └── js/
+│
+├── routes/
+│   ├── listings.js
+│   └── review.js
 │
 ├── utils/
 │   ├── ExpressError.js
@@ -90,15 +103,26 @@ WanderStay/
 │
 ├── views/
 │   ├── includes/
+│   │   ├── flash.ejs
+│   │   ├── footer.ejs
+│   │   └── navbar.ejs
+│   │
 │   ├── layouts/
+│   │   └── boilerplate.ejs
+│   │
 │   └── listings/
+│       ├── index.ejs
+│       ├── new.ejs
+│       ├── edit.ejs
+│       └── show.ejs
 │
+├── .gitignore
 ├── app.js
 ├── schemas.js
 ├── package.json
+├── package-lock.json
 └── README.md
-
----
+```
 
 ## 📌 Routes
 
