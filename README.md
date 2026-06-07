@@ -1,14 +1,29 @@
 # 🏡 Haven Stay
 
-Haven Stay is a full-stack property listing web application. Users can browse, create, edit, and delete accommodation listings. The project is built using Node.js, Express.js, MongoDB, Mongoose, and EJS.
+Haven Stay is a full-stack property listing web application where users can explore, create, review, edit, and manage accommodation listings. The project is built using **Node.js, Express.js, MongoDB, Mongoose, Passport.js, and EJS** following the MVC architecture.
 
 ---
 
-## 🚀 Features
+# 🚀 Features
 
-## Features
+## 🔐 User Authentication
 
-### 📋 Listing Management
+* User Registration (Sign Up)
+* User Login
+* User Logout
+* Password hashing using Passport-Local-Mongoose
+* Session-based Authentication
+* Persistent login sessions using Express Session
+
+## 🛡️ Authorization
+
+* Only logged-in users can create listings
+* Only listing owners can edit or delete their listings
+* Only logged-in users can post reviews
+* Only review owners can delete their reviews
+* Protected routes using custom middleware
+
+## 📋 Listing Management
 
 * View all listings
 * Flash Messages
@@ -16,62 +31,80 @@ Haven Stay is a full-stack property listing web application. Users can browse, c
 * Create new listings
 * Edit existing listings
 * Delete listings
+* Ownership tracking for listings
 
-### ⭐ Reviews & Ratings
+## ⭐ Reviews & Ratings
 
 * Add reviews to listings
 * Rate listings
 * View reviews on listing pages
 * Delete reviews
+* Ownership tracking for reviews
 
-### ✅ Validation
+## 💬 Flash Messages
+
+* Success notifications
+* Error notifications
+* Authentication alerts
+* Authorization alerts
+
+## ✅ Validation
 
 * Server-side validation using Joi
 * Client-side validation using Bootstrap
+* Custom validation middleware
 
-### ⚠️ Error Handling
+## ⚠️ Error Handling
 
-* Custom error handling system
+* Custom ExpressError class
 * Centralized error middleware
-* Async error handling for routes
+* Async route handling using wrapAsync
 
-### 🎨 User Interface
+## 🎨 User Interface
 
-* EJS templating engine
-* EJS-Mate layouts
-* Responsive Bootstrap design
-* Custom CSS styling
+* EJS Templating Engine
+* EJS-Mate Layouts
+* Bootstrap 5
+* Responsive Design
+* Custom CSS Styling
 
-### 🗄️ Database
+## 🗄️ Database
 
-* MongoDB integration
-* Mongoose models and schemas
-* One-to-many relationship between Listings and Reviews
-
-
----
-
-## 🛠️ Tech Stack
-
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Joi
-
-### Frontend
-- EJS
-- EJS-Mate
-- Bootstrap 5
-- HTML5
-- CSS3
-- JavaScript
+* MongoDB
+* Mongoose ODM
+* One-to-Many Relationship (Listings ↔ Reviews)
+* User ↔ Listings Association
+* User ↔ Reviews Association
 
 ---
 
+# 🛠️ Tech Stack
 
-## Project Structure
+## Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* Passport.js
+* Passport-Local
+* Passport-Local-Mongoose
+* Express Session
+* Connect Flash
+* Joi
+
+## Frontend
+
+* EJS
+* EJS-Mate
+* Bootstrap 5
+* HTML5
+* CSS3
+* JavaScript
+
+---
+
+# 📁 Project Structure
 
 ```text
 Haven-Stay/
@@ -82,14 +115,21 @@ Haven-Stay/
 │
 ├── models/
 │   ├── listing.js
-│   └── review.js
+│   ├── review.js
+│   └── user.js
+│
+├── routes/
+│   ├── listings.js
+│   ├── review.js
+│   └── user.js
 │
 ├── public/
 │   ├── css/
+│   │   ├── style.css
 │   │   ├── indexStyle.css
 │   │   ├── newStyle.css
 │   │   ├── showStyle.css
-│   │   └── style.css
+│   │   └── signupStyle.css
 │   │
 │   └── js/
 │
@@ -98,52 +138,101 @@ Haven-Stay/
 │   └── review.js
 │
 ├── utils/
-│   ├── ExpressError.js
-│   └── wrapAsync.js
 │
 ├── views/
 │   ├── includes/
-│   │   ├── flash.ejs
+│   │   ├── navbar.ejs
 │   │   ├── footer.ejs
-│   │   └── navbar.ejs
+│   │   └── flash.ejs
 │   │
 │   ├── layouts/
 │   │   └── boilerplate.ejs
 │   │
-│   └── listings/
-│       ├── index.ejs
-│       ├── new.ejs
-│       ├── edit.ejs
-│       └── show.ejs
+│   ├── landing/
+│   │   └── index.ejs
+│   │
+│   ├── listings/
+│   │   ├── index.ejs
+│   │   ├── show.ejs
+│   │   ├── new.ejs
+│   │   └── edit.ejs
+│   │
+│   └── users/
+│       ├── signup.ejs
+│       └── login.ejs
 │
-├── .gitignore
-├── app.js
+├── middleware.js
 ├── schemas.js
+├── app.js
 ├── package.json
 ├── package-lock.json
 └── README.md
 ```
 
-## 📌 Routes
+---
 
-| Method | Route                           | Description                    |
-| ------ | ------------------------------- | ------------------------------ |
-| GET    | /listings                       | Show all listings              |
-| GET    | /listings/new                   | Form to create a listing       |
-| POST   | /listings                       | Create a new listing           |
-| GET    | /listings/:id                   | Show listing details           |
-| GET    | /listings/:id/edit              | Edit listing form              |
-| PUT    | /listings/:id                   | Update a listing               |
-| DELETE | /listings/:id                   | Delete a listing               |
-| POST   | /listings/:id/reviews           | Add a review to a listing      |
-| DELETE | /listings/:id/reviews/:reviewId | Delete a review from a listing |
+# 📌 Routes
 
+## Authentication Routes
+
+| Method | Route   |
+| ------ | ------- |
+| GET    | /signup |
+| POST   | /signup |
+| GET    | /login  |
+| POST   | /login  |
+| GET    | /logout |
+
+## Listing Routes
+
+| Method | Route              | Description       |
+| ------ | ------------------ | ----------------- |
+| GET    | /listings          | Show all listings |
+| GET    | /listings/new      | New listing form  |
+| POST   | /listings          | Create listing    |
+| GET    | /listings/:id      | Show listing      |
+| GET    | /listings/:id/edit | Edit listing form |
+| PUT    | /listings/:id      | Update listing    |
+| DELETE | /listings/:id      | Delete listing    |
+
+## Review Routes
+
+| Method | Route                           | Description   |
+| ------ | ------------------------------- | ------------- |
+| POST   | /listings/:id/reviews           | Create review |
+| DELETE | /listings/:id/reviews/:reviewId | Delete review |
 
 ---
 
-## ⚙️ Installation
+# 🔒 Authentication Flow
 
-### Clone the Repository
+1. User registers through the Sign Up page.
+2. Password is securely hashed using Passport-Local-Mongoose.
+3. User logs in using Passport Local Strategy.
+4. Passport creates a session after successful authentication.
+5. Session ID is stored in the browser cookie.
+6. User remains authenticated across requests until logout.
+
+---
+
+# 🛡️ Authorization Flow
+
+### Listings
+
+* Listing owners can edit their listings.
+* Listing owners can delete their listings.
+* Other users cannot modify listings they do not own.
+
+### Reviews
+
+* Review owners can delete their reviews.
+* Other users cannot delete reviews they do not own.
+
+---
+
+# ⚙️ Installation
+
+### Clone Repository
 
 ```bash
 git clone <repository-url>
@@ -157,9 +246,11 @@ npm install
 
 ### Start MongoDB
 
-Make sure MongoDB is running locally.
+```bash
+mongod
+```
 
-### Run the Application
+### Run Application
 
 ```bash
 node app.js
@@ -171,52 +262,62 @@ or
 nodemon app.js
 ```
 
-### Open in Browser
+### Open Browser
 
 ```text
-http://localhost:3000/listings
+http://localhost:3000
 ```
 
 ---
 
-## 📚 Concepts Practiced
+# 📚 Concepts Practiced
 
-- RESTful Routing
-- CRUD Operations
-- Express Middleware
-- Server-Side Rendering
-- Static File Serving
-- MongoDB & Mongoose
-- Schema Validation
-- Error Handling
-- Async Programming
-- Method Override
-- MVC Project Structure
-
----
-
-## 🔮 Future Improvements
-
-- User Authentication & Authorization
-- Image Upload with Cloudinary
-- Search and Filtering
-- Map Integration
-- User Profiles
-- Booking Functionality
+* MVC Architecture
+* RESTful Routing
+* CRUD Operations
+* Authentication with Passport.js
+* Authorization
+* Sessions & Cookies
+* Express Middleware
+* Flash Messages
+* Server-Side Rendering
+* MongoDB & Mongoose
+* Schema Validation with Joi
+* Error Handling
+* Async Programming
+* Method Override
+* Ownership-Based Access Control
 
 ---
 
-## 👨‍💻 Author
+# 🔮 Future Improvements
+
+* Cloudinary Image Upload
+* Search & Filtering
+* Interactive Maps
+* User Profiles
+* Favorites / Wishlist
+* Booking System
+* Payment Integration
+* Email Verification
+* Forgot Password Functionality
+
+---
+
+# 👨‍💻 Author
 
 **Alapati Murari**
 
 Built while learning and practicing:
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- Backend Development
-- REST APIs
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* Passport.js
+* Authentication & Authorization
+* Backend Development
+* REST APIs
 
 ---
 

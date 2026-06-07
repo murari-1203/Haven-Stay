@@ -1,192 +1,190 @@
 <% layout("layouts/boilerplate") %>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-<div class="show-page">
-  <div class="show-card">
+    <div class="show-page">
+        <div class="show-card">
 
-    <!-- Image -->
-    <div class="show-img-wrapper">
-      <img src="<%= doc.image.url %>" alt="<%= doc.title %>" class="show-img">
+            <!-- Image -->
+            <div class="show-img-wrapper">
+                <img src="<%= doc.image.url %>" alt="<%= doc.title %>" class="show-img" />
 
-      <div class="show-price-badge">
-        ₹<%= doc.price.toLocaleString("en-IN") %>
-        <span>/ night</span>
-      </div>
-    </div>
+                <div class="show-price-badge">
+                    ₹
+                    <%= doc.price.toLocaleString("en-IN") %>
+                        <span>/ night</span>
+                </div>
+            </div>
 
-    <!-- Body -->
-    <div class="show-body">
+            <!-- Body -->
+            <div class="show-body">
 
-      <div class="show-top">
-        <div>
-          <h3 class="show-title"><%= doc.title %></h3>
+                <div class="show-top">
+                    <div>
+                        <h3 class="show-title">
+                            <%= doc.title %>
+                        </h3>
 
-          <p class="show-location">
-            <i class="fa-solid fa-location-dot show-pin"></i>
-            <%= doc.location %>, <%= doc.country %>
-          </p>
-        </div>
-      </div>
+                        <p class="show-location">
+                            <i class="fa-solid fa-location-dot show-pin"></i>
+                            <%= doc.location %>,
+                                <%= doc.country %>
+                        </p>
 
-      <div class="section-divider">About this place</div>
+                        <div class="host-info">
+                            <div>
+                                <div class="host-label">Hosted by</div>
+                                <div class="host-name">
+                                    <%= doc.owner.username %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      <p class="show-description">
-        <%= doc.description %>
-      </p>
+                <div class="section-divider">About this place</div>
 
-      <div class="section-divider">Actions</div>
+                <p class="show-description">
+                    <%= doc.description %>
+                </p>
 
-      <div class="d-flex align-items-center gap-3 flex-wrap">
-        <a href="/listings/<%= doc._id %>/edit"
-           class="btn-submit d-flex align-items-center gap-2">
-          <i class="fa-regular fa-pen-to-square"></i>
-          Edit listing
-        </a>
+                <div class="section-divider">Actions</div>
 
-        <form method="POST"
-              action="/listings/<%= doc._id %>?_method=DELETE">
-          <button type="submit"
-                  class="btn-delete d-flex align-items-center gap-2">
-            <i class="fa-regular fa-trash-can"></i>
-            Delete listing
-          </button>
-        </form>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
 
-        <a href="/listings" class="btn-cancel">
+                    <% if (currUser && currUser._id.equals(doc.owner._id)) { %>
+
+                        <a href="/listings/<%= doc._id %>/edit" class="btn-submit d-flex align-items-center gap-2">
+                            <i class="fa-regular fa-pen-to-square"></i> Edit listing
+                        </a>
+
+                        <form method="POST" action="/listings/<%= doc._id %>?_method=DELETE">
+                            <button type="submit" class="btn-delete d-flex align-items-center gap-2">
+              <i class="fa-regular fa-trash-can"></i>
+              Delete listing
+            </button>
+                        </form>
+
+                        <% } %>
+
+                            <a href="/listings" class="btn-cancel">
           ← Back to listings
         </a>
-      </div>
 
-      <!-- REVIEW SECTION -->
-      <!-- ALL REVIEWS -->
-
-      <!-- REVIEW SECTION -->
-
-<div class="review-section">
-
-  <div class="section-divider">Leave a Review</div>
-
-  <form
-    action="/listings/<%= doc._id %>/reviews"
-    method="POST"
-    class="review-form needs-validation"
-    novalidate
-  >
-
-    <div class="review-group">
-      <label for="rating" class="review-label">
-        Rating
-      </label>
-
-      <input
-        type="range"
-        min="1"
-        max="5"
-        step="1"
-        value="3"
-        id="rating"
-        name="review[rating]"
-        class="review-range"
-      >
-    </div>
-
-    <div class="review-group">
-      <label for="comment" class="review-label">
-        Comments
-      </label>
-
-      <textarea
-        id="comment"
-        name="review[comment]"
-        rows="5"
-        class="review-textarea form-control"
-        placeholder="Share your experience..."
-        required
-      ></textarea>
-
-      <div class="invalid-feedback">
-        Please enter a comment.
-      </div>
-    </div>
-
-    <button type="submit" class="btn-review">
-      Submit Review
-    </button>
-
-  </form>
-
-</div>
-
-<!-- ALL REVIEWS -->
-
-              <% if(doc.reviews && doc.reviews.length > 0){ %>
-              
-        <div class="reviews-container">
-        
-          <div class="section-divider">Guest Reviews</div>
-        
-          <div class="reviews-grid">
-          
-            <% for(let review of doc.reviews){ %>
-            
-              <div class="review-card">
-              
-                <div class="review-card-header">
-                
-                  <div class="review-avatar">G</div>
-                
-                  <div class="review-meta">
-                    <span class="review-author">Guest</span>
-                    <span class="review-date">Verified Stay</span>
-                  </div>
-                
-                  <span class="review-rating-badge">
-                    <%= review.rating %>/5
-                  </span>
-                
                 </div>
-              
-                <div class="review-stars">
-                  <% for(let i = 1; i <= 5; i++){ %>
-                    <i class="fa-solid fa-star <%= i <= review.rating ? 'star-filled' : 'star-empty' %>"></i>
-                  <% } %>
-                </div>
-              
-                <p class="review-comment"><%= review.comment %></p>
-              
-                <form
-                  method="POST"
-                  action="/listings/<%= doc._id %>/reviews/<%= review._id %>?_method=DELETE"
-                  class="review-delete-form"
-                >
-                  <button type="submit" class="btn-review-delete">
-                    <i class="fa-regular fa-trash-can"></i>
-                    Delete review
-                  </button>
-                </form>
-              
-              </div>
-            
-            <% } %>
-            
-          </div>
-        
+
+                <!-- REVIEW SECTION -->
+
+                <% if (currUser) { %>
+
+                    <div class="review-section">
+
+                        <div class="section-divider">Leave a Review</div>
+
+                        <form action="/listings/<%= doc._id %>/reviews" method="POST" class="review-form needs-validation" novalidate>
+
+                            <div class="review-group">
+                                <label for="rating" class="review-label">
+                Rating
+              </label>
+
+                                <input type="range" min="1" max="5" step="1" value="3" id="rating" name="review[rating]" class="review-range" />
+                            </div>
+
+                            <div class="review-group">
+                                <label for="comment" class="review-label">
+                Comments
+              </label>
+
+                                <textarea id="comment" name="review[comment]" rows="5" class="review-textarea form-control" placeholder="Share your experience..." required></textarea>
+
+                                <div class="invalid-feedback">
+                                    Please enter a comment.
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-review">
+              Submit Review
+            </button>
+
+                        </form>
+
+                    </div>
+
+                    <% } %>
+
+                        <!-- ALL REVIEWS -->
+
+                        <% if (doc.reviews && doc.reviews.length > 0) { %>
+
+                            <div class="reviews-container">
+
+                                <div class="section-divider">Guest Reviews</div>
+
+                                <div class="reviews-grid">
+
+                                    <% for (let review of doc.reviews) { %>
+
+                                        <div class="review-card">
+
+                                            <div class="review-card-header">
+
+                                                <div class="review-avatar">G</div>
+
+                                                <div class="review-meta">
+                                                    <span class="review-author"><%=  review.owner.username  %></span>
+                                                    <span class="review-date">Verified Stay</span>
+                                                </div>
+
+                                                <span class="review-rating-badge">
+                      <%= review.rating %>/5
+                    </span>
+
+                                            </div>
+
+                                            <div class="review-stars">
+                                                <% for (let i = 1; i <= 5; i++) { %>
+
+                                                    <i class="fa-solid fa-star <%= i <= review.rating ? 'star-filled' : 'star-empty' %>"></i>
+
+                                                    <% } %>
+                                            </div>
+
+                                            <p class="review-comment">
+                                                <%= review.comment %>
+                                            </p>
+
+                                            <form method="POST" action="/listings/<%= doc._id %>/reviews/<%= review._id %>?_method=DELETE" class="review-delete-form">
+                                                <button type="submit" class="btn-review-delete">
+                      <i class="fa-regular fa-trash-can"></i>
+                      Delete review
+                    </button>
+                                            </form>
+
+                                        </div>
+
+                                        <% } %>
+
+                                </div>
+
+                            </div>
+
+                            <% } else { %>
+
+                                <div class="reviews-container">
+
+                                    <div class="section-divider">Guest Reviews</div>
+
+                                    <div class="no-reviews">
+                                        No reviews yet.
+                                    </div>
+
+                                </div>
+
+                                <% } %>
+
+
+
+            </div>
         </div>
-        
-        <% } else { %>
-        
-        <div class="reviews-container">
-        
-          <div class="section-divider">Guest Reviews</div>
-        
-          <div class="no-reviews">
-            No reviews yet. Be the first to review this place!
-          </div>
-        
-        </div>
-        
-        <% } %>
     </div>
-  </div>
-</div>
