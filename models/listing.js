@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const Review = require("./review.js")
 
+defaultImageUrl = "https://unsplash.com/photos/a-tall-red-building-with-lots-of-windows-q1hVW8rhzFk"
+
 const listingSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -12,7 +14,7 @@ const listingSchema = new mongoose.Schema({
         filename: String,
         url: {
             type: String,
-            default: "default-image-url"
+            default: defaultImageUrl
         }
     },
     price: Number,
@@ -25,7 +27,32 @@ const listingSchema = new mongoose.Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
-    }
+    },
+    geometry: {
+        lat: Number,
+        lng: Number,
+    },
+    category: {
+        type: String,
+        enum: [
+            "Beach",
+            "Mountains",
+            "Camping",
+            "Arctic",
+            "Desert",
+            "Forest",
+            "Lake",
+            "City",
+            "Countryside",
+            "Historical",
+            "Castle",
+            "Farm",
+            "Luxury",
+            "Adventure"
+        ],
+        default: "City"
+
+    },
 })
 
 listingSchema.post("findOneAndDelete", async(listing) => {
@@ -35,6 +62,8 @@ listingSchema.post("findOneAndDelete", async(listing) => {
         });
     }
 });
+
+
 
 const Listing = mongoose.model("Listing", listingSchema);
 

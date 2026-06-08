@@ -9,7 +9,25 @@ const listingSchema = Joi.object({
         price: Joi.number().required().min(0),
         image: Joi.object({
             url: Joi.string().allow("", null)
-        })
+        }),
+        category: Joi.string()
+            .valid(
+                "Beach",
+                "Mountains",
+                "Camping",
+                "Arctic",
+                "Desert",
+                "Forest",
+                "Lake",
+                "City",
+                "Countryside",
+                "Historical",
+                "Castle",
+                "Farm",
+                "Luxury",
+                "Adventure"
+            )
+
     }).required()
 });
 

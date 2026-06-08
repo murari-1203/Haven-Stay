@@ -5,9 +5,10 @@ const expressSession = require("express-session");
 const Passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
+const MongoStore = require("connect-mongo").default;
 app = express();
 
+require("dotenv").config();
 const flash = require("connect-flash");
 const path = require("path");
 const methodOverride = require("method-override");
@@ -22,12 +23,40 @@ const userRouter = require("./routes/user.js");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+// -------------------- Database Connection --------------------
+const dbUrl = process.env.ATLAS_DB_URL;
+main()
+    .then(() => {
+        console.log("Connexted TO DB");
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+async function main() {
+    await mongoose.connect(dbUrl);
+}
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRET
+    },
+    touchAfter: 12 * 3600
+});
+
+store.on("error", () => {
+    console.log("error in mongo session Store")
+})
+
 const sessionOptions = {
-    secret: "MySecret",
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true
 
 }
+
 
 app.use(expressSession(sessionOptions));
 app.use(flash())
@@ -55,21 +84,6 @@ app.use((req, res, next) => {
 app.engine("ejs", ejsMate);
 
 
-
-// -------------------- Database Connection --------------------
-
-main()
-    .then(() => {
-        console.log("Connexted TO DB");
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
-async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
-}
-
 // -------------------- Server Start --------------------
 
 app.listen(3000, () => {
@@ -79,7 +93,6 @@ app.listen(3000, () => {
 // -------------------- Home Route --------------------
 
 app.get("/", (req, res) => {
-    console.log("success flash:", res.locals.success);
 
     res.render("landing/index.ejs");
 });

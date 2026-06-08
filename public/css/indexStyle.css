@@ -190,3 +190,116 @@ body {
 .custom-alert i {
     font-size: 1.1rem;
 }
+
+.search-section {
+    padding: 16px 0 0;
+    /* was 32px */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1.5px solid #e8ddd4;
+    border-radius: 40px;
+    padding: 10px 20px;
+    gap: 12px;
+    max-width: 640px;
+    margin: 0 auto;
+    box-shadow: 0 2px 16px rgba(61, 43, 31, 0.08);
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.search-bar:focus-within {
+    box-shadow: 0 4px 24px rgba(61, 43, 31, 0.14);
+    border-color: #c9973a;
+}
+
+.search-bar .search-icon {
+    color: #c9973a;
+    font-size: 1rem;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #3d2b1f;
+    flex: 1;
+    min-width: 0;
+}
+
+.search-bar input::placeholder {
+    color: #9e8878;
+}
+
+.search-btn {
+    background: #3d2b1f;
+    color: #faf7f2;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.search-btn:hover {
+    background: #c9973a;
+}
+
+
+/* ── Category Strip ── */
+
+.category-strip {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    padding: 20px 0 0;
+    scrollbar-width: none;
+    border-bottom: 1.5px solid #e8ddd4;
+    margin-top: 4px;
+}
+
+.category-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-bottom: 2.5px solid transparent;
+    transition: border-color 0.15s, color 0.15s;
+    color: #9e8878;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.cat-item i {
+    font-size: 1.25rem;
+}
+
+.cat-item:hover {
+    color: #3d2b1f;
+    border-bottom-color: #3d2b1f;
+}
+
+.cat-item.active {
+    color: #3d2b1f;
+    border-bottom-color: #3d2b1f;
+    font-weight: 500;
+}

@@ -332,3 +332,26 @@
     font-weight: 600;
     color: #222;
 }
+
+.star-rating {
+    display: flex;
+    gap: 6px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.star-input {
+    font-size: 2rem;
+    color: #d1d5db;
+    /* unfilled gray */
+    transition: color 0.15s ease, transform 0.1s ease;
+}
+
+.star-input.filled {
+    color: #f59e0b;
+    /* amber */
+}
+
+.star-input:hover {
+    transform: scale(1.15);
+}

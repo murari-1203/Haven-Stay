@@ -16,7 +16,6 @@ module.exports.saveRedirectUrl = (req, res, next) => {
     if (req.session.redirectUrl) {
         res.locals.redirectUrl = req.session.redirectUrl;
     }
-    console.log(res.locals.redirectUrl)
     next();
 
 }
@@ -43,7 +42,6 @@ module.exports.validateListing = (req, res, next) => {
 
 module.exports.validateReview = (req, res, next) => {
     const result = reviewSchema.validate(req.body);
-    console.log(req.body);
 
     if (result.error) {
         throw new ExpressError(400, result.error.message);
