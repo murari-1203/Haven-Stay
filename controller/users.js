@@ -2,26 +2,37 @@ const User = require("../models/user");
 
 module.exports.signUp = async(req, res) => {
     try {
-        let { email, username, password } = req.body;
+        let { email, username, password, confirmPassword } = req.body;
+
+        if (password !== confirmPassword) {
+            req.flash("error", "Passwords do not match");
+            return res.redirect("/signup");
+        }
+
+        if (password.length < 8) {
+            req.flash("error", "Password must be at least 8 characters long");
+            return res.redirect("/signup");
+        }
+
         const newUser = new User({
             email,
             username,
         });
-        const registeredUser = await User.register(newUser, password);
-        req.login(registeredUser, (err) => {
-            if (err) {
-                return next(err)
-            }
-            req.flash("success", "welcome to Haven-Stay")
-            res.redirect("/listings");
-        })
 
-    } catch (e) {
-        req.flash("error", e.message);
+        const registeredUser = await User.register(newUser, password);
+
+        req.login(registeredUser, (err) => {
+            if (err) return next(err);
+
+            req.flash("success", "Welcome to Haven Stay!");
+            res.redirect("/listings");
+        });
+
+    } catch (err) {
+        req.flash("error", err.message);
         res.redirect("/signup");
     }
-
-}
+};
 
 module.exports.renderSignup = (req, res) => {
     res.render("users/signup.ejs");
