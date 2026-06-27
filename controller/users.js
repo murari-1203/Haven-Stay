@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const sendWelcomeEmail = require("../utils/mailer");
 
 module.exports.signUp = async(req, res) => {
     try {
@@ -20,6 +21,12 @@ module.exports.signUp = async(req, res) => {
         });
 
         const registeredUser = await User.register(newUser, password);
+
+        try {
+            await sendWelcomeEmail(email, username);
+        } catch (err) {
+            console.error(err);
+        }
 
         req.login(registeredUser, (err) => {
             if (err) return next(err);
