@@ -2,21 +2,30 @@
 
 <div align="center">
 
-![Node.js](https://img.shields.io/badge/Node.js-Backend-339933?logo=node.js\&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-Framework-000000?logo=express\&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb\&logoColor=white)
-![Mongoose](https://img.shields.io/badge/Mongoose-ODM-880000)
-![Cloudinary](https://img.shields.io/badge/Cloudinary-Image%20Storage-3448C5?logo=cloudinary\&logoColor=white)
-![Leaflet](https://img.shields.io/badge/Leaflet-Maps-199900?logo=leaflet\&logoColor=white)
-![Passport.js](https://img.shields.io/badge/Passport.js-Authentication-34E27A)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-UI-7952B3?logo=bootstrap\&logoColor=white)
-![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?logo=render\&logoColor=white)
+<!-- Core Stack -->
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=for-the-badge&logoColor=white)
 
-### 🌐 Live Demo
+<!-- Cloud & Auth -->
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
+![Passport.js](https://img.shields.io/badge/Passport.js-34E27A?style=for-the-badge&logoColor=black)
+![Resend](https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=mail.ru&logoColor=white)
 
-**https://haven-stay-fkwi.onrender.com**
+<!-- Frontend & Maps -->
+![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+![EJS](https://img.shields.io/badge/EJS-B4CA65?style=for-the-badge&logo=ejs&logoColor=black)
+![Leaflet](https://img.shields.io/badge/Leaflet.js-199900?style=for-the-badge&logo=leaflet&logoColor=white)
 
-*A modern Airbnb-inspired vacation rental platform built with Node.js, Express.js, MongoDB, Cloudinary, and Leaflet Maps.*
+<!-- Deployment -->
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)
+
+<br/>
+
+### 🌐 [Live Demo →](https://haven-stay-fkwi.onrender.com)
+
+*A modern Airbnb-inspired vacation rental platform built with Node.js, Express.js, MongoDB, Cloudinary, Leaflet Maps, and transactional email via Resend.*
 
 </div>
 
@@ -24,9 +33,9 @@
 
 ## 📖 Overview
 
-HavenStay is a full-stack web application that allows users to discover, share, and manage unique vacation rentals. Inspired by Airbnb, the platform provides a seamless experience for property listing, image management, location visualization, and user reviews.
+HavenStay is a full-stack web application that allows users to discover, share, and manage unique vacation rentals. Inspired by Airbnb, the platform provides a seamless experience for property listing, image management, location visualization, user reviews, and automated email notifications.
 
-The project follows the MVC architecture and implements secure authentication, cloud image storage, interactive maps, and role-based authorization.
+The project follows the **MVC architecture** and implements secure authentication, cloud image storage, interactive maps, role-based authorization, and transactional emails via Resend.
 
 ---
 
@@ -34,157 +43,119 @@ The project follows the MVC architecture and implements secure authentication, c
 
 ### 🔐 Authentication & Authorization
 
-* User Registration
-* User Login & Logout
-* Session-Based Authentication
-* Password Hashing using Passport.js
-* Flash Messages
-* Protected Routes
-* Authorization Middleware
-* Owner-only Listing Management
-* Author-only Review Deletion
+- User Registration with **Welcome Email** (powered by Resend)
+- User Login & Logout
+- Session-Based Authentication
+- Password Hashing via Passport.js
+- Flash Messages
+- Protected Routes & Authorization Middleware
+- Owner-only Listing Management
+- Author-only Review Deletion
+
+### 📧 Transactional Email — Resend
+
+- **Welcome email** automatically sent when a new user signs up
+- Branded HTML email with user's name and onboarding information
+- Powered by [Resend](https://resend.com) for reliable delivery
+- Server-side email dispatch with error handling (non-blocking)
 
 ### 🏠 Listing Management
 
-* Create New Listings
-* View All Listings
-* View Detailed Property Pages
-* Edit Listings
-* Delete Listings
-* Category-Based Filtering
-* User-Specific "My Listings" Dashboard
+- Create, View, Edit, and Delete Listings
+- Category-Based Filtering
+- User-Specific "My Listings" Dashboard
 
 ### 📸 Cloudinary Image Upload
 
-* Upload Property Images
-* Cloud-Based Storage
-* Optimized Image Delivery
-* Secure Image Hosting
-* Automatic Image URL Management
+- Upload Property Images with Cloud-Based Storage
+- Optimized Image Delivery & Secure Hosting
+- Automatic Image URL Management
 
 ### 🗺️ Interactive Maps
 
-* Leaflet.js Integration
-* Property Location Visualization
-* Dynamic Location Markers
-* Interactive Map Navigation
+- Leaflet.js Integration for Property Location Visualization
+- Dynamic Location Markers & Interactive Map Navigation
 
 ### ⭐ Reviews & Ratings
 
-* Add Reviews
-* Delete Reviews
-* Property Feedback System
-* User-Based Review Authorization
+- Add & Delete Reviews
+- Property Feedback System with User-Based Authorization
 
 ### 🎨 User Experience
 
-* Responsive Design
-* Bootstrap Components
-* Dynamic Flash Messages
-* Clean and Modern Interface
-* Mobile-Friendly Layout
+- Responsive Design with Bootstrap 5
+- Dynamic Flash Messages
+- Clean, Modern, Mobile-Friendly Interface
 
 ### 🛡️ Security & Validation
 
-* Joi Validation
-* Server-Side Validation
-* Session Security
-* Route Protection
-* Error Handling Middleware
-* Ownership Verification
+- Joi Validation & Server-Side Validation
+- Session Security & Route Protection
+- Error Handling Middleware & Ownership Verification
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-
-* HTML5
-* CSS3
-* JavaScript
-* Bootstrap 5
-* EJS Templates
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB Atlas
-* Mongoose ODM
-
-### Authentication
-
-* Passport.js
-* Passport Local
-* Express Session
-
-### Cloud Services
-
-* Cloudinary
-
-### Maps & Geocoding
-
-* Leaflet.js
-* Geocoding APIs
-
-### Validation
-
-* Joi
-
-### Deployment
-
-* Render
+| Layer | Technology |
+|---|---|
+| **Backend** | ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=node.js&logoColor=white) ![Express.js](https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express&logoColor=white) |
+| **Database** | ![MongoDB](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white) ![Mongoose](https://img.shields.io/badge/Mongoose-880000?style=flat-square) |
+| **Frontend** | ![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=flat-square&logo=bootstrap&logoColor=white) ![EJS](https://img.shields.io/badge/EJS-B4CA65?style=flat-square) |
+| **Auth** | ![Passport.js](https://img.shields.io/badge/Passport.js-34E27A?style=flat-square) ![Express Session](https://img.shields.io/badge/Express_Session-FF6C37?style=flat-square) |
+| **Email** | ![Resend](https://img.shields.io/badge/Resend-000000?style=flat-square&logo=mail.ru&logoColor=white) |
+| **Maps** | ![Leaflet](https://img.shields.io/badge/Leaflet.js-199900?style=flat-square&logo=leaflet&logoColor=white) |
+| **Images** | ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat-square&logo=cloudinary&logoColor=white) |
+| **Validation** | ![Joi](https://img.shields.io/badge/Joi-0080FF?style=flat-square) |
+| **Deployment** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=black) |
 
 ---
 
 ## 📂 Project Structure
 
 ```bash
-HavenStay
+HavenStay/
 │
-├── controller
+├── controller/
 │   ├── listings.js
 │   ├── review.js
-│   └── users.js
+│   └── users.js           # Includes Resend welcome email logic
 │
-├── init
+├── init/
 │   ├── data.js
 │   └── index.js
 │
-├── models
+├── models/
 │   ├── listing.js
 │   ├── review.js
 │   └── user.js
 │
-├── public
-│   ├── css
+├── public/
+│   ├── css/
 │   │   ├── indexStyle.css
 │   │   ├── newStyle.css
 │   │   ├── showStyle.css
 │   │   ├── signupStyle.css
 │   │   └── style.css
-│   │
-│   └── js
+│   └── js/
 │
-├── routes
+├── routes/
 │   ├── listings.js
 │   ├── review.js
 │   └── user.js
 │
-├── utils
+├── utils/
 │   ├── ExpressError.js
 │   ├── geocode.js
+│   ├── mailer.js          # Resend email utility
 │   └── wrapAsync.js
 │
-├── views
-│   ├── includes
-│   ├── landing
-│   ├── layouts
-│   ├── listings
-│   └── users
+├── views/
+│   ├── includes/
+│   ├── landing/
+│   ├── layouts/
+│   ├── listings/
+│   └── users/
 │
 ├── .env
 ├── .gitignore
@@ -204,7 +175,7 @@ HavenStay
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/havenstay.git
+git clone https://github.com/murari-1203/havenstay.git
 cd havenstay
 ```
 
@@ -214,35 +185,38 @@ cd havenstay
 npm install
 ```
 
-### 3️⃣ Create Environment Variables
+### 3️⃣ Configure Environment Variables
 
-Create a `.env` file in the root directory.
+Create a `.env` file in the root directory:
 
 ```env
+# MongoDB
 ATLAS_DB_URL=your_mongodb_connection_string
 
+# Session
 SECRET=your_session_secret
 
+# Cloudinary
 CLOUD_NAME=your_cloudinary_cloud_name
 CLOUD_API_KEY=your_cloudinary_api_key
 CLOUD_API_SECRET=your_cloudinary_api_secret
+
+# Resend (Transactional Email)
+RESEND_API_KEY=your_resend_api_key
+EMAIL_FROM=onboarding@yourdomain.com
 ```
 
 ### 4️⃣ Start the Application
 
 ```bash
 npm start
-```
-
-or
-
-```bash
+# or
 node app.js
 ```
 
 ### 5️⃣ Open in Browser
 
-```text
+```
 http://localhost:3000
 ```
 
@@ -255,7 +229,7 @@ http://localhost:3000
 ```javascript
 {
   username: String,
-  email: String
+  email:    String
 }
 ```
 
@@ -263,16 +237,16 @@ http://localhost:3000
 
 ```javascript
 {
-  title: String,
+  title:       String,
   description: String,
-  image: Object,
-  price: Number,
-  location: String,
-  country: String,
-  category: String,
-  geometry: Object,
-  owner: ObjectId,
-  reviews: [ObjectId]
+  image:       Object,
+  price:       Number,
+  location:    String,
+  country:     String,
+  category:    String,
+  geometry:    Object,
+  owner:       ObjectId,
+  reviews:     [ObjectId]
 }
 ```
 
@@ -280,30 +254,38 @@ http://localhost:3000
 
 ```javascript
 {
-  rating: Number,
+  rating:  Number,
   comment: String,
-  author: ObjectId
+  author:  ObjectId
 }
 ```
 
 ---
 
-## 🏝️ Property Categories
+## 📧 Email Integration — Resend
 
-* Beach
-* Mountains
-* Camping
-* Arctic
-* Desert
-* Forest
-* Lake
-* City
-* Countryside
-* Historical
-* Castle
-* Farm
-* Luxury
-* Adventure
+When a new user registers on HavenStay, a **branded welcome email** is dispatched automatically using the [Resend](https://resend.com) API.
+
+```javascript
+// utils/mailer.js
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+module.exports.sendWelcomeEmail = async (to, username) => {
+  await resend.emails.send({
+    from: process.env.EMAIL_FROM,
+    to,
+    subject: "Welcome to HavenStay 🏡",
+    html: `
+      <h2>Hey ${username}, welcome aboard!</h2>
+      <p>We're thrilled to have you on HavenStay. Start exploring unique stays or list your own property today.</p>
+      <a href="https://haven-stay-fkwi.onrender.com">Visit HavenStay →</a>
+    `,
+  });
+};
+```
+
+> Email dispatch is **non-blocking** — signup flow completes even if the email fails silently.
 
 ---
 
@@ -331,115 +313,95 @@ DELETE  /listings/:id/reviews/:reviewId
 ### Users
 
 ```http
-GET     /signup
-POST    /signup
-
+GET     /signup    → renders form
+POST    /signup    → creates user + sends welcome email via Resend
 GET     /login
 POST    /login
-
 GET     /logout
 ```
 
 ---
 
+## 🏝️ Property Categories
+
+`Beach` · `Mountains` · `Camping` · `Arctic` · `Desert` · `Forest` · `Lake` · `City` · `Countryside` · `Historical` · `Castle` · `Farm` · `Luxury` · `Adventure`
+
+---
+
 ## 🚀 Deployment
 
-The project is deployed using Render.
+The project is deployed on **Render**.
 
-### Live Website
+🔗 **[https://haven-stay-fkwi.onrender.com](https://haven-stay-fkwi.onrender.com)**
 
-🔗 https://haven-stay-fkwi.onrender.com
+### Steps
 
-### Deployment Steps
-
-1. Push code to GitHub.
-2. Create a Render account.
-3. Connect GitHub repository.
-4. Configure environment variables.
-5. Deploy application.
+1. Push code to GitHub
+2. Create a [Render](https://render.com) account and connect your repo
+3. Set all environment variables (including `RESEND_API_KEY`)
+4. Deploy 🚀
 
 ---
 
 ## 🛡️ Security Features
 
-* Password Hashing
-* Session Authentication
-* Route Protection
-* Ownership Verification
-* Joi Validation
-* Express Error Handling
-* MongoDB Injection Protection
-* Flash Notifications
+- Password Hashing via Passport.js
+- Session-Based Authentication
+- Route Protection & Ownership Verification
+- Joi Schema Validation
+- Express Error Handling Middleware
+- MongoDB Injection Protection
+- Flash Notifications
 
 ---
 
-## 🎯 Future Enhancements
+## 🔮 Future Enhancements
 
-* Property Booking System
-* Wishlist Feature
-* Advanced Search
-* Payment Gateway Integration
-* User Profiles
-* Property Availability Calendar
-* Real-Time Notifications
-* Admin Dashboard
-* Chat System
+- [ ] Property Booking System
+- [ ] Wishlist / Saved Properties
+- [ ] Advanced Search & Filters
+- [ ] Payment Gateway Integration
+- [ ] User Profiles & Avatars
+- [ ] Property Availability Calendar
+- [ ] Real-Time Notifications
+- [ ] Admin Dashboard
+- [ ] In-App Chat System
+- [ ] Email notifications for new reviews & bookings
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome.
-
-1. Fork the repository.
-2. Create a feature branch.
+Contributions are welcome!
 
 ```bash
-git checkout -b feature-name
+# 1. Fork the repository
+# 2. Create your feature branch
+git checkout -b feature/your-feature-name
+
+# 3. Commit your changes
+git commit -m "feat: add your feature"
+
+# 4. Push and open a Pull Request
+git push origin feature/your-feature-name
 ```
-
-3. Commit your changes.
-
-```bash
-git commit -m "Added new feature"
-```
-
-4. Push your branch.
-
-```bash
-git push origin feature-name
-```
-
-5. Open a Pull Request.
 
 ---
 
 ## 👨‍💻 Author
 
-### Alapati Murari
+**Alapati Murari**
+Full Stack Developer · Node.js · Express.js · MongoDB
 
-Full Stack Developer | Node.js | Express.js | MongoDB
-
-Built with ❤️ using modern web technologies.
-
----
-
-## ⭐ Show Your Support
-
-If you like this project:
-
-⭐ Star the repository
-
-🍴 Fork the repository
-
-📢 Share it with others
+[![GitHub](https://img.shields.io/badge/GitHub-murari--1203-181717?style=flat-square&logo=github)](https://github.com/murari-1203)
 
 ---
 
 <div align="center">
 
-### Thank You for Visiting HavenStay 🏡
+**If you found this project useful, consider giving it a ⭐**
 
+### Thank You for Visiting HavenStay 🏡
 **Happy Coding! 🚀**
 
 </div>
