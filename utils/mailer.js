@@ -19,13 +19,13 @@ async function sendWelcomeEmail(email, username) {
             </p>
 
             <p style="text-align:center; margin-top: 30px;">
-                <a href="https://haven-stay-fkwi.onrender.com"
+                <a href="https://havenstay.site"
                    style="background:#2E8B57;color:#fff;padding:12px 24px;text-decoration:none;border-radius:6px;font-weight:bold;">
                     Explore Haven Stay
                 </a>
             </p>
 
-            <hr>
+            <hr style="border:none; border-top:1px solid #ddd; margin:0 0 35px 0;">
 
             <p>
             Hi <strong>${username}</strong>,
