@@ -23,7 +23,9 @@
 
 <br/>
 
-### 🌐 [Live Demo →](https://haven-stay-fkwi.onrender.com)
+### 🌐 [Live Demo →](https://havenstay.site)
+
+https://havenstay.site
 
 *A modern Airbnb-inspired vacation rental platform built with Node.js, Express.js, MongoDB, Cloudinary, Leaflet Maps, and transactional email via Resend.*
 
@@ -264,28 +266,7 @@ http://localhost:3000
 
 ## 📧 Email Integration — Resend
 
-When a new user registers on HavenStay, a **branded welcome email** is dispatched automatically using the [Resend](https://resend.com) API.
-
-```javascript
-// utils/mailer.js
-const { Resend } = require("resend");
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-module.exports.sendWelcomeEmail = async (to, username) => {
-  await resend.emails.send({
-    from: process.env.EMAIL_FROM,
-    to,
-    subject: "Welcome to HavenStay 🏡",
-    html: `
-      <h2>Hey ${username}, welcome aboard!</h2>
-      <p>We're thrilled to have you on HavenStay. Start exploring unique stays or list your own property today.</p>
-      <a href="https://haven-stay-fkwi.onrender.com">Visit HavenStay →</a>
-    `,
-  });
-};
-```
-
-> Email dispatch is **non-blocking** — signup flow completes even if the email fails silently.
+When a new user registers on HavenStay, a **branded welcome email** is dispatched automatically using the Resend API.
 
 ---
 
@@ -332,7 +313,7 @@ GET     /logout
 
 The project is deployed on **Render**.
 
-🔗 **[https://haven-stay-fkwi.onrender.com](https://haven-stay-fkwi.onrender.com)**
+🔗 **[https://haven-stay.site](https://haven-stay.site)**
 
 ### Steps
 
