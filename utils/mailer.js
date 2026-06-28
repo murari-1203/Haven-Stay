@@ -4,7 +4,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendWelcomeEmail(email, username) {
     await resend.emails.send({
-        from: "Haven Stay <onboarding@resend.dev>",
+        from: "Haven Stay <noreply@havenstay.site>",
         to: email,
         subject: "🏡 Welcome to Haven Stay!",
         html: `
