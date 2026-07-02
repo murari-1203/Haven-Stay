@@ -12,6 +12,7 @@
 ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
 ![Passport.js](https://img.shields.io/badge/Passport.js-34E27A?style=for-the-badge&logoColor=black)
 ![Resend](https://img.shields.io/badge/Resend-000000?style=for-the-badge&logo=mail.ru&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google-gemini&logoColor=white)
 
 <!-- Frontend & Maps -->
 ![Bootstrap](https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
@@ -37,7 +38,7 @@ https://havenstay.site
 
 HavenStay is a full-stack web application that allows users to discover, share, and manage unique vacation rentals. Inspired by Airbnb, the platform provides a seamless experience for property listing, image management, location visualization, user reviews, and automated email notifications.
 
-The project follows the **MVC architecture** and implements secure authentication, cloud image storage, interactive maps, role-based authorization, and transactional emails via Resend.
+The project follows the MVC architecture and implements secure authentication, cloud image storage, interactive maps, AI-powered review summarization using Google Gemini, role-based authorization, and transactional emails via Resend.
 
 ---
 
@@ -83,6 +84,14 @@ The project follows the **MVC architecture** and implements secure authenticatio
 - Add & Delete Reviews
 - Property Feedback System with User-Based Authorization
 
+### 🤖 AI Review Summary
+
+- AI-generated summaries of customer reviews
+- Powered by Google Gemini
+- Automatically updates when new reviews are added
+- Helps users quickly understand overall guest sentiment
+- Highlights common positives and areas for improvement
+
 ### 🎨 User Experience
 
 - Responsive Design with Bootstrap 5
@@ -110,6 +119,7 @@ The project follows the **MVC architecture** and implements secure authenticatio
 | **Images** | ![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=flat-square&logo=cloudinary&logoColor=white) |
 | **Validation** | ![Joi](https://img.shields.io/badge/Joi-0080FF?style=flat-square) |
 | **Deployment** | ![Render](https://img.shields.io/badge/Render-46E3B7?style=flat-square&logo=render&logoColor=black) |
+| **AI** | ![Google Gemini](https://img.shields.io/badge/Google_Gemini-4285F4?style=flat-square&logo=google-gemini&logoColor=white) |
 
 ---
 
@@ -120,15 +130,15 @@ HavenStay/
 │
 ├── controller/
 │   ├── listings.js
-│   ├── review.js
-│   └── users.js           # Includes Resend welcome email logic
+│   ├── review.js                # Review CRUD + AI summary update
+│   └── users.js                 # User authentication & Resend welcome email
 │
 ├── init/
 │   ├── data.js
 │   └── index.js
 │
 ├── models/
-│   ├── listing.js
+│   ├── listing.js               # Listing schema + AI review summary
 │   ├── review.js
 │   └── user.js
 │
@@ -146,10 +156,14 @@ HavenStay/
 │   ├── review.js
 │   └── user.js
 │
+├── services/
+│   └── AI/
+│       └── reviewSummarizer.js  # Google Gemini review summarization service
+│
 ├── utils/
 │   ├── ExpressError.js
 │   ├── geocode.js
-│   ├── mailer.js          # Resend email utility
+│   ├── mailer.js                # Resend email utility
 │   └── wrapAsync.js
 │
 ├── views/
@@ -224,49 +238,28 @@ http://localhost:3000
 
 ---
 
-## 🗄️ Database Models
 
-### User Model
-
-```javascript
-{
-  username: String,
-  email:    String
-}
-```
-
-### Listing Model
-
-```javascript
-{
-  title:       String,
-  description: String,
-  image:       Object,
-  price:       Number,
-  location:    String,
-  country:     String,
-  category:    String,
-  geometry:    Object,
-  owner:       ObjectId,
-  reviews:     [ObjectId]
-}
-```
-
-### Review Model
-
-```javascript
-{
-  rating:  Number,
-  comment: String,
-  author:  ObjectId
-}
-```
-
----
 
 ## 📧 Email Integration — Resend
 
 When a new user registers on HavenStay, a **branded welcome email** is dispatched automatically using the Resend API.
+
+## 🤖 AI Review Summary
+
+HavenStay uses **Google Gemini** to automatically generate concise summaries of guest reviews.
+
+Whenever a new review is submitted, the application:
+
+1. Collects all reviews for the listing.
+2. Sends them to Google Gemini.
+3. Generates a concise summary highlighting:
+   - Overall guest sentiment
+   - Frequently mentioned positives
+   - Common concerns (if any)
+4. Stores the generated summary in the listing.
+5. Displays the summary on the listing page.
+
+This enables users to understand guest feedback at a glance without reading every individual review.
 
 ---
 
