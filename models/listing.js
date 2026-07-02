@@ -53,6 +53,13 @@ const listingSchema = new mongoose.Schema({
         default: "City"
 
     },
+    aiSummary: {
+        positives: [String],
+        negatives: [String],
+        overall: String,
+        sentiment: Number,
+        updatedAt: Date
+    }
 })
 
 listingSchema.post("findOneAndDelete", async(listing) => {

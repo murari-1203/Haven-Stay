@@ -355,3 +355,33 @@
 .star-input:hover {
     transform: scale(1.15);
 }
+
+.ai-summary-card {
+    margin: 40px 0;
+    padding: 30px;
+    border-radius: 18px;
+    background: #f8f9fa;
+    border: 1px solid #e6e6e6;
+}
+
+.ai-summary-overall {
+    background: white;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.summary-list {
+    margin-top: 15px;
+    padding-left: 20px;
+}
+
+.summary-list li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+.sentiment-box {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+}

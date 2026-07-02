@@ -127,79 +127,150 @@
 
                     <% } %>
 
-                        <!-- ALL REVIEWS -->
+                        <!-- Ai Summary -->
 
-                        <% if (doc.reviews && doc.reviews.length > 0) { %>
+                        <% if (doc.aiSummary && doc.aiSummary.overall) { %>
 
-                            <div class="reviews-container">
+                            <div class="ai-summary-card">
 
-                                <div class="section-divider">Guest Reviews</div>
+                                <div class="section-divider">
+                                    🤖 AI Review Summary
+                                </div>
 
-                                <div class="reviews-grid">
+                                <div class="ai-summary-overall">
+                                    <h5>Overall Experience</h5>
+                                    <p>
+                                        <%= doc.aiSummary.overall %>
+                                    </p>
+                                </div>
 
-                                    <% for (let review of doc.reviews) { %>
+                                <div class="row mt-4">
 
-                                        <div class="review-card">
+                                    <div class="col-md-6">
+                                        <h5 class="text-success">
+                                            <i class="fa-solid fa-thumbs-up"></i> Guests Loved
+                                        </h5>
 
-                                            <div class="review-card-header">
+                                        <ul class="summary-list">
+                                            <% doc.aiSummary.positives.forEach(item => { %>
+                                                <li>
+                                                    <%= item %>
+                                                </li>
+                                                <% }) %>
+                                        </ul>
+                                    </div>
 
-                                                <div class="review-avatar">
-                                                    <%=review.owner.username[0].toUpperCase() %>
-                                                </div>
+                                    <div class="col-md-6">
+                                        <h5 class="text-danger">
+                                            <i class="fa-solid fa-thumbs-down"></i> Common Complaints
+                                        </h5>
 
-                                                <div class="review-meta">
-                                                    <span class="review-author"><%=  review.owner.username  %></span>
-                                                    <span class="review-date">Verified Stay</span>
-                                                </div>
+                                        <ul class="summary-list">
+                                            <% doc.aiSummary.negatives.forEach(item => { %>
+                                                <li>
+                                                    <%= item %>
+                                                </li>
+                                                <% }) %>
+                                        </ul>
+                                    </div>
 
-                                                <span class="review-rating-badge">
-                      <%= review.rating %>/5
-                    </span>
+                                </div>
 
-                                            </div>
+                                <div class="sentiment-box mt-4">
 
-                                            <div class="review-stars">
-                                                <% for (let i = 1; i <= 5; i++) { %>
+                                    <h5>
+                                        😊 Positive Sentiment
+                                    </h5>
 
-                                                    <i class="fa-solid fa-star <%= i <= review.rating ? 'star-filled' : 'star-empty' %>"></i>
+                                    <div class="progress" style="height:25px;">
 
-                                                    <% } %>
-                                            </div>
+                                        <div class="progress-bar bg-success" role="progressbar" style="width:<%= doc.aiSummary.sentiment %>%">
 
-                                            <p class="review-comment">
-                                                <%= review.comment %>
-                                            </p>
-
-                                            <% if(currUser) { %>
-                                                <form method="POST" action="/listings/<%= doc._id %>/reviews/<%= review._id %>?_method=DELETE" class="review-delete-form">
-                                                    <button type="submit" class="btn-review-delete">
-                      <i class="fa-regular fa-trash-can"></i>
-                      Delete review
-                    </button>
-                                                </form>
-                                                <% } %>
+                                            <%= doc.aiSummary.sentiment %>%
 
                                         </div>
 
-                                        <% } %>
+                                    </div>
 
                                 </div>
 
                             </div>
 
-                            <% } else { %>
+                            <% } %>
 
-                                <div class="reviews-container">
+                                <!-- ALL REVIEWS -->
 
-                                    <div class="section-divider">Guest Reviews</div>
+                                <% if (doc.reviews && doc.reviews.length > 0) { %>
 
-                                    <div class="no-reviews">
-                                        No reviews yet.
+                                    <div class="reviews-container">
+
+                                        <div class="section-divider">Guest Reviews</div>
+
+                                        <div class="reviews-grid">
+
+                                            <% for (let review of doc.reviews) { %>
+
+                                                <div class="review-card">
+
+                                                    <div class="review-card-header">
+
+                                                        <div class="review-avatar">
+                                                            <%=review.owner.username[0].toUpperCase() %>
+                                                        </div>
+
+                                                        <div class="review-meta">
+                                                            <span class="review-author"><%=  review.owner.username  %></span>
+                                                            <span class="review-date">Verified Stay</span>
+                                                        </div>
+
+                                                        <span class="review-rating-badge">
+                      <%= review.rating %>/5
+                    </span>
+
+                                                    </div>
+
+                                                    <div class="review-stars">
+                                                        <% for (let i = 1; i <= 5; i++) { %>
+
+                                                            <i class="fa-solid fa-star <%= i <= review.rating ? 'star-filled' : 'star-empty' %>"></i>
+
+                                                            <% } %>
+                                                    </div>
+
+                                                    <p class="review-comment">
+                                                        <%= review.comment %>
+                                                    </p>
+
+                                                    <% if(currUser) { %>
+                                                        <form method="POST" action="/listings/<%= doc._id %>/reviews/<%= review._id %>?_method=DELETE" class="review-delete-form">
+                                                            <button type="submit" class="btn-review-delete">
+                      <i class="fa-regular fa-trash-can"></i>
+                      Delete review
+                    </button>
+                                                        </form>
+                                                        <% } %>
+
+                                                </div>
+
+                                                <% } %>
+
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                    <% } else { %>
 
-                                <% } %>
+                                        <div class="reviews-container">
+
+                                            <div class="section-divider">Guest Reviews</div>
+
+                                            <div class="no-reviews">
+                                                No reviews yet.
+                                            </div>
+
+                                        </div>
+
+                                        <% } %>
 
 
 
